@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Programa BARC-CO</title>
+  </head>
+  <body>
+      <header>
+          {% include 'header.html' %}
+      </header>
+    <main>
+      <!--
+     <nav>
+        <div class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></div>
+        <ul id="menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="{{ url_for('auth.login_get') }}">Login</a></li>
+          <li><a href="{{ url_for('main.form') }}">Registrarse</a></li>
+          
+          <li><a href="{{ url_for('main.profile', id=10) }}">Profile</a></li>
+          <li><a href="/logout">Desloguearse</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    -->
+      
+  <!-- tu barra de navegación -->
+
+      <section class="hero" id="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+          <h1>Gestión <span class="span">Inteligente</span> de Puertos Marítimos</h1>
+          <p>Control, trazabilidad y eficiencia en cada embarque.</p>
+          <div class="buttons">
+            <button class="btningresar">Ingresar al sistema</button>
+            <a href="#servicios" class="btn_servicios">Ver servicios</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicios">
+          <h1 id="h1servicios">Nuestros Servicios</h1>
+          <section class="servicio">
+            <div class="imagen">
+              <img src="../static/img/servicio1.png" alt="Imagen descriptiva del servicio"  width="250" height="350">
+            </div>
+            <div class="descripcion">
+              <h2>Registro de datos</h2>
+              <p>Con nuestro sistema podrás tener un registro detallado de cada embarcación, obteniendo así, información organizada para visualizar en todo momento.</p>
+            </div>
+          </section>
+
+          <section class="servicio">
+            <div class="descripcion">
+              <h2>Amplia red de ubicaciones</h2>
+              <p>Un sistema que abarca una gran variedad de ubicaciones y que permite la conexión logistica con las demas puertos. Conectá sin problemas ni retrasos cada embarcación, tanto su salida como su llegada. </p>
+            </div>
+                  <div class="imagen">
+              <img src="../static/img/servicio2.png" alt="Imagen descriptiva del servicio"  width="250" height="350">
+            </div>
+          </section>
+
+          <section class="servicio">
+            <div class="imagen">
+              <img src="../static/img/servicio3.png" alt="Imagen descriptiva del servicio"  width="250" height="350">
+            </div>
+            <div class="descripcion">
+              <h2>Control del programa</h2>
+              <p>Una vez dentro del sistema, podes tener el control total de sesiones de los usuarios registrados e ingresados en el sistema.</p>
+            </div>
+          </section>
+        </section>
+
+        <section id="aboutus">
+
+        </section>
+    </main>
+
+    <footer>
+      {% include 'footer.html' %}
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

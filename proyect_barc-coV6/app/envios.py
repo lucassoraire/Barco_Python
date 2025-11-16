@@ -23,8 +23,8 @@ def registroenvio():
             estado = request.form.get("estado", "").strip()
             origen = request.form.get("origen", "").strip()
             destino = request.form.get("destino", "").strip()
-            fk_encargado_envios = current_user.id  # ← USA EL ID DEL USUARIO LOGUEADO
-            fk_barco = request.form.get("barco", "").strip()
+            fk_encargado_envios = current_user.id 
+            fk_barco = request.form.get("fk_barco", "").strip()
 
             if not descripcion or not origen or not destino:
                 flash("Descripción, origen y destino son obligatorios", "error")
@@ -49,6 +49,43 @@ def registroenvio():
     
     else:
         return render_template("envios/registroenvio.html")
+    
+
+@envios_bp.route("/listaenvios", methods=["POST"])
+@login_required
+@requiere_encargado_envios
+def modificarenvio():
+    try:
+        id_envio = request.form.get("id_envio")
+        nuevo_estado = request.form.get("estado_nuevo").strip()
+        
+        if not id_envio or not nuevo_estado:
+            flash("Datos incompletos", "error")
+            return redirect(request.referrer)
+        
+        estados_validos = ["pendiente", "en_proceso", "entregado", "cancelado"]
+        if nuevo_estado not in estados_validos:
+            flash("Estado no válido", "error")
+            return redirect(request.referrer)
+        
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            UPDATE envio 
+            SET estado = ?
+            WHERE id_envio = ?
+        """, (nuevo_estado, id_envio))
+        
+        conn.commit()
+        conn.close()
+        
+        flash("Estado actualizado correctamente", "success")
+        return redirect("/listaenvios")
+        
+    except Exception as e:
+        flash(f"Error al actualizar: {str(e)}", "error")
+        return redirect(request.referrer)
 
 @envios_bp.route("/listaenvios")
 @login_required

@@ -38,15 +38,31 @@
                             <td class="id-cell">#{{ envio.id_envio }}</td>
                             <td class="descripcion-cell">{{ envio.descripcion }}</td>
                             <td>
-                                <span class="estado-badge estado-{{ envio.estado|lower|replace(' ', '-') }}">
-                                    {{ envio.estado }}
-                                </span>
+                                <form action="/listaenvios" method="POST" class="estado-form">
+                                    <input type="hidden" name="id_envio" value="{{ envio.id_envio }}">
+                                    <select name="estado_nuevo" 
+                                            class="estado-select estado-{{ envio.estado|lower|replace(' ', '-') }}"
+                                            onchange="this.form.submit()">
+                                        <option value="pendiente" {% if envio.estado == 'pendiente' %}selected{% endif %}>
+                                            Pendiente
+                                        </option>
+                                        <option value="en_proceso" {% if envio.estado == 'en_proceso' %}selected{% endif %}>
+                                            En Proceso
+                                        </option>
+                                        <option value="entregado" {% if envio.estado == 'entregado' %}selected{% endif %}>
+                                            Entregado
+                                        </option>
+                                        <option value="cancelado" {% if envio.estado == 'cancelado' %}selected{% endif %}>
+                                            Cancelado
+                                        </option>
+                                    </select>
+                                </form>
                             </td>
                             <td>{{ envio.origen }}</td>
                             <td>{{ envio.destino }}</td>
                             <td>
-                                {% if envio.fk_barcos %}
-                                {{ envio.fk_barcos }}
+                                {% if envio.fk_barco %}
+                                {{ envio.fk_barco }}
                                 {% else %}
                                 <span class="no-asignado">No asignado</span>
                                 {% endif %}

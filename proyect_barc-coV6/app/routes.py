@@ -10,7 +10,7 @@ main = Blueprint("main", __name__, template_folder="templates")
 program = Blueprint("program", __name__, template_folder="templates")
 
 
-# LISTA DE USUARIOS 
+ 
 @db.route("/users")
 def users():
     conn = get_db_connection()
@@ -24,12 +24,12 @@ def index():
     nombre = getattr(current_user, "username", "Invitado")
     return render_template("index.html", nombre=nombre)
 
-# INICIO DEL PROGRAMA PRINCIPAL
+
 @main.route("/main-program-view/<string:name_user>")
 def main_program_view(name_user):
     return render_template("main-program-view.html", name_user=name_user)
 
-# profile (PROTEGIDO)
+
 @main.route("/profile")
 @login_required
 def profile():
@@ -55,6 +55,7 @@ def profile():
 @main.route("/form", methods=["GET"])
 def form():
     return render_template("form.html")
+
 
 
 

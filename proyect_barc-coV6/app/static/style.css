@@ -878,39 +878,82 @@ h2{
     white-space: nowrap;
 }
 
-.estado-badge {
+.estado-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.estado-select {
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    display: inline-block;
     border: 1px solid #1a1a1a;
+    cursor: pointer;
+    outline: none;
+    min-width: 120px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    padding-right: 30px;
+    transition: all 0.3s ease;
 }
 
-.estado-pendiente {
-    background: #fff3cd;
+
+.estado-select.estado-pendiente {
+    background-color: #fff3cd;
     color: #856404;
     border: 1px solid #ffeaa7;
 }
 
-.estado-en-curso, .estado-en-proceso {
-    background: #d1ecf1;
+.estado-select.estado-en-proceso {
+    background-color: #d1ecf1;
     color: #0c5460;
     border: 1px solid #bee5eb;
 }
 
-.estado-completado, .estado-entregado {
-    background: #d4edda;
+.estado-select.estado-entregado {
+    background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
 }
 
-.estado-cancelado {
-    background: #f8d7da;
+.estado-select.estado-cancelado {
+    background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+
+.estado-select option {
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 8px;
+}
+
+.estado-select option[value="pendiente"] {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.estado-select option[value="en_proceso"] {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.estado-select option[value="entregado"] {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.estado-select option[value="cancelado"] {
+    background-color: #f8d7da;
+    color: #721c24;
 }
 
 .no-asignado {
